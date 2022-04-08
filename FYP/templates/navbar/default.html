@@ -1,0 +1,82 @@
+{% load static%}
+
+<style>
+
+  header{
+      display: flex;
+      justify-content: space-between;
+
+  }
+
+  .l-button{
+      transition: all 0.2s ease-in-out;
+      float: right;
+        
+  }
+  .btn-outline-success {
+    color: #57c7f7!important;
+    border-color: #57c7f7!important;
+  }
+    .btn-outline-success:hover {
+    font-weight: 500;
+    color: #111!important;
+    background-color: #57c7f7!important;
+}
+  .l-btn:hover{
+    opacity: .9;
+    box-shadow: 0 5px 15px #57c7f7;
+  }
+
+  .nav-bar{
+      overflow: hidden;
+      width: 100%;
+      position: fixed;
+      box-shadow:  0 0.2rem 0.5rem 0 rgba(0, 0, 0, 0.4);
+
+      font-family: 'Manrope', 'Times New Roman', serif;
+      font-weight: 500;
+  }
+  .d-flex a{
+    margin-right: 20px;
+    text-decoration: none;
+  }
+  .d-flex button a:hover{
+    color: #fff;
+    text-decoration: none;
+  }
+header{
+  margin-bottom: 4.6rem;
+}
+ 
+#usr_name{
+  color: #5bc3ee;
+}
+  </style>
+
+
+<header>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark nav-bar justify-content-between" >
+    <div class="container-fluid d-flex">
+  
+      <a class="navbar-brand" href="/">
+        <img src="{% static '#' %}" alt="HRM" width="48" height="48" style="margin-left: 10px;" >
+      </a>
+
+      {% if user.is_authenticated %}
+
+      {% if user.is_superuser %}
+      <a id="usr_name" href="/admins">@{{user.username}}</a>
+      {% elif user.is_active %}
+      <a id="usr_name" href="/">@{{user.username}}</a>
+      {% endif %}
+
+      {% else %}
+      <a id="login_button" class="btn btn-outline-success l-btn" href="{% url 'signin'  %}">Sign in</a>
+
+      {% endif %}
+
+    </div>
+
+  </div>
+</nav>
+</header>
