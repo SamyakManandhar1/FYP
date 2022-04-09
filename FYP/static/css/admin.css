@@ -38,10 +38,10 @@ body {
 }
 
 .welcome {
-  color: #00eeb6;
+  color: #FFCC99;
 }
 .welcome:hover {
-  color: #00eeb6;
+  color: #FFCC99;
   transform: scale(1.1);
 }
 
@@ -81,7 +81,7 @@ a:hover {
 
 #sidebar .sidebar-header {
   padding: 20px;
-  background: #00eeb6;
+  background: #FFCC99;
 }
 
 #sidebar .sidebar-header strong {
@@ -187,5 +187,5 @@ ul ul a {
 
 
 .title {
-  color: #00eeb6;
+  color: #FFCC99;
 }

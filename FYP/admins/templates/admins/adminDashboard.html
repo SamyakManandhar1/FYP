@@ -6,13 +6,12 @@ Admin Dashboard | HRM
 {% block main %}
 <style>
   body {
-    background-color: #353a40;
+    /* background-color: #353a40; */
     top:5rem;
   }
 
 </style>
 
-<p> lorem lorem451 lorem45 /b random </p>
 
 <div id="wrapper">
   <div class="d-flex flex-column" id="content-wrapper">
@@ -29,12 +28,14 @@ Admin Dashboard | HRM
                 <div class="card-body">
                   <div class="row align-items-center no-gutters">
                     <div class="col me-2">
-                      <div class="text-uppercase fw-bold text-xs mb-1"><span>Total Orders</span></div>
+                      <div class="text-muted mb-1"><span>Employee Total Count</span></div>
+
                       <div class="text-secondary fw-normal display-6 h5 mb-0">
-                        <span> Ordered: <span class="text-success">{{ totalBookings }}</span></span>
+
+                        <span> Employee: <span class="text-success">{{ totalEmployee }} </span></span>
                       </div>
                     </div>
-                    <div class="col-auto" style="color: black"><i class="fas fa-box-open fa-3x"></i></div>
+                    <div class="col-auto" style="color: black"><i class="fas fa-user fa-3x"></i></div>
                   </div>
                 </div>
               </div>
@@ -47,9 +48,9 @@ Admin Dashboard | HRM
                 <div class="card-body">
                   <div class="row align-items-center no-gutters">
                     <div class="col me-2">
-                      <div class="text-uppercase fw-bold text-xs mb-1"><span>Total Categories</span></div>
+                      <div class="text-muted mb-1"><span>Available Department</span></div>
                       <div class="text-secondary fw-normal display-6 h5 mb-0">
-                        <span> Category: <span class="text-info">{{ category}}</span></span>
+                        <span> Department: <span class="text-info">{{ totalDepartment}}</span></span>
                       </div>
                     </div>
                     <div class="col-auto" style="color: black"><i class="fa fa-th-large fa-3x"></i></div>
@@ -65,12 +66,12 @@ Admin Dashboard | HRM
                 <div class="card-body">
                   <div class="row align-items-center no-gutters">
                     <div class="col me-2">
-                      <div class="text-uppercase fw-bold text-xs mb-1"><span>Total Review</span></div>
+                      <div class="text-muted mb-1"><span>Admin Total Count</span></div>
                       <div class="text-secondary fw-normal display-6 h5 mb-0">
-                        <span> Feedback <span class="text-info">{{ totalReview}}</span></span>
+                        <span> Admin <span class="text-info">{{ totalAdmin}}</span></span>
                       </div>
                     </div>
-                    <div class="col-auto" style="color: black"><i class="fas fa-comments-dollar fa-3x"></i></div>
+                    <div class="col-auto" style="color: black"><i class="fas fa-user-secret fa-3x"></i></div>
                   </div>
                 </div>
               </div>
@@ -80,8 +81,8 @@ Admin Dashboard | HRM
 
           <div class="col-lg-6 col-md-6 col-xl-4 mb-4">
             <a href="/admins/get_allservices">
-              <div class="card shadow border-0 py-2">
-                <div class="card-body">
+              <!-- <div class="card shadow border-0 py-2"> -->
+                <!-- <div class="card-body">
                   <div class="row align-items-center no-gutters">
                     <div class="col me-2">
                       <div class="text-uppercase fw-bold text-xs mb-1">
@@ -93,14 +94,14 @@ Admin Dashboard | HRM
                     </div>
                     <div class="col-auto" style="color: black"><i class="fas fa-cogs fa-3x"></i></div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </a>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-lg-7 col-xl-8">
+          <div class="col-lg-10 col-xl-8">
             <div class="card mb-4 shadow border-0">
               <div class="card-header d-flex justify-content-between align-items-center">
                 <h6 class="text-primary text-center fw-bold m-0">User Overview</h6>
@@ -110,7 +111,7 @@ Admin Dashboard | HRM
                   <div class="col-sm-6">
                     <div class="card">
                       <div class="card-header d-flex justify-content-between align-items-center">
-                        <h6 class="text-primary fw-bold m-0">Profesionals</h6>
+                        <h6 class="text-primary fw-bold m-0">Employee</h6>
                       </div>
                       <div class="table-responsive">
                         <table class="table">
@@ -122,11 +123,11 @@ Admin Dashboard | HRM
                             </tr>
                           </thead>
                           <tbody>
-                            {% for iprofessional in professional_info %}
+                            {% for iemployee in employee_info %}
                             <tr>
-                              <th scope="row">{{ iprofessional.id }}</th>
-                              <td>@{{ iprofessional.username }}</td>
-                              <td>{{ iprofessional.date_joined }}</td>
+                              <th scope="row">{{ iemployee.id }}</th>
+                              <td>@{{ iemployee.username }}</td>
+                              <td>{{ iemployee.date_joined }}</td>
                             </tr>
                             {% endfor %}
                           </tbody>
@@ -137,7 +138,7 @@ Admin Dashboard | HRM
                   <div class="col-sm-6">
                     <div class="card">
                       <div class="card-header d-flex justify-content-between align-items-center">
-                        <h6 class="text-primary fw-bold m-0">Customers</h6>
+                        <h6 class="text-primary fw-bold m-0">Admins</h6>
                       </div>
                       <div class="table-responsive">
                         <table class="table">
@@ -149,11 +150,11 @@ Admin Dashboard | HRM
                             </tr>
                           </thead>
                           <tbody>
-                            {% for iuser in user_info %}
+                            {% for iadmin in admin_info %}
                             <tr>
-                              <th scope="row">{{ iuser.id }}</th>
-                              <td>@{{ iuser.username }}</td>
-                              <td>{{ iuser.date_joined}}</td>
+                              <th scope="row">{{ iadmin.id }}</th>
+                              <td>@{{ iadmin.username }}</td>
+                              <td>{{ iadmin.date_joined}}</td>
                             </tr>
                             {% endfor %}
                           </tbody>
@@ -165,71 +166,9 @@ Admin Dashboard | HRM
               </div>
             </div>
           </div>
-
-
-          
-          <div class="col-lg-5 col-xl-4">
-            <div class="card mb-4 shadow border-0">
-              <div class="card-header d-flex justify-content-between align-items-center">
-                <h6 class="fw-medium m-0">Total User overview</h6>
-              </div>
-              <div class="card-body">
-                <div class="card py-2" style="margin-bottom: 20px">
-                  <div class="card-body">
-                    <div class="row align-items-center no-gutters">
-                      <div class="col me-2">
-                        <div class="text-uppercase fw-bold text-xs mb-1" style="color: #383841"></div>
-                        <div class="fw-bold display-6 h5 mb-0">
-                          <span style="color: #383841"> Active: <span class="text-secondary"> {{ admin }}</span> </span>
-                        </div>
-                      </div>
-                      <div class="col-auto">
-                        <i class="fas fa-user-secret fa-3x text-primary" style="color: #32323a !important"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card py-2">
-                  <div class="card-body">
-                    <div class="row align-items-center no-gutters">
-                      <div class="col me-2" style="color: #00eeb6">
-                        <div class="text-uppercase fw-bold text-xs mb-1"></div>
-                        <div class="fw-bold display-6 h5 mb-0">
-                          <span style="color: #00eeb6">
-                            Active: <span class="text-secondary"> {{ professional }}</span>
-                          </span>
-                        </div>
-                      </div>
-                      <div class="col-auto"><i class="fas fa-user-graduate fa-3x" style="color: #00eeb6"></i></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card py-2">
-                  <div class="card-body">
-                    <div class="row align-items-center no-gutters">
-                      <div class="col me-2">
-                        <div class="text-uppercase fw-bold text-xs mb-1" style="color: #0099cc"></div>
-                        <div class="fw-bold display-6 h5 mb-0">
-                          <span style="color: #0099cc"> Active: <span class="text-secondary"> {{ user }}</span> </span>
-                        </div>
-                      </div>
-                      <div class="col-auto"><i class="fas fa-users fa-3x" style="color: #0099cc"></i></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="text-center small mt-4">
-                  <span class="me-2"> <i class="fas fa-circle" style="color: #32323a"></i>&nbsp;Admins </span>
-                  <span class="me-2"> <i class="fas fa-circle" style="color: #00eeb6"></i>&nbsp;Professionals </span>
-                  <span class="me-2"> <i class="fas fa-circle" style="color: #0099cc"></i>&nbsp;Customers </span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+
+
 
 {% endblock main%}
