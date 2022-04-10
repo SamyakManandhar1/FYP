@@ -1,23 +1,21 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, logout
 from django.shortcuts import redirect, render
-
 from multiprocessing import context
 from django.contrib.auth import authenticate,logout
 from django.shortcuts import render, redirect
 from django.contrib import messages
-
 from . forms import CreateUserForm
 from django.contrib import auth
 
-from authentications.auth import unauthenticated_user, user_only
+from authentications.auth import unauthenticated_user, employee_only
 from django.contrib.auth.decorators import login_required
 # from .models import Profile
 # from django.contrib.auth.forms import PasswordChangeForm
 # from django.contrib.auth import update_session_auth_hash
 # Create your views here.
 
-@user_only
+@employee_only
 def signup(request):
     if request.method=='POST':
         userdata = CreateUserForm(request.POST)

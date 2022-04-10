@@ -27,7 +27,7 @@ def admin_only(view_function):
 # Check User role NORMAL or ADMIN
 # and if the user is NORMAL USER, it gives access to USER PAGES
 # and if the user is not NORMAL USER, it redirects to ADMIN DASHBOARD
-def user_only(view_function):
+def employee_only(view_function):
     def wrapper_function(request, *args, **kwargs):
         if request.user.is_staff:
             return redirect('/admins/dashboard')

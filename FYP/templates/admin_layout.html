@@ -37,7 +37,7 @@
 <nav class="navbar navbar-expand shadow sticky-top bg-dark" id="navbar-admin">
     <div class="container-fluid">
 
-        <a href="/admins"><img src="{% static 'images/site-iconG.png' %}" alt="HRM" width="58" height="38" /></a>
+        <a href="/admins/dashboard"><img src="{% static 'images/site-iconG.png' %}" alt="HRM" width="58" height="38" /></a>
             <div class="content" style="background-color: #FFCC99;  color:#fff;">
         <button type="button" id="sidebarCollapse" class="btn btn-white" >
             <i class="fa fa-bars" aria-hidden="true"></i>
@@ -102,7 +102,14 @@
 
 
     <div class="container-fluid">
-        {% block main %}{% endblock main %}
+        {% block main %}
+        
+        
+        
+        
+        
+        
+        {% endblock main %}
     </div>
 </div>
 

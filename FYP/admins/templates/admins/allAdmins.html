@@ -1,0 +1,67 @@
+{% extends 'admin_layout.html' %} 
+{% load bootstrap %}
+ {% load static %} 
+ {% block title %}
+All Admins | Admin HRM
+ {%endblock title %} 
+
+ {% block main %}
+<div class="d-flex justify-content-between">
+  <h3 class="text-dark mb-4 px-4 display-6 mt-lg-5"> All Admins</h3>
+</div>
+
+<div class="container-fluid mt-4" style="min-height: 100vh">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      {% include 'message.html' %}
+
+      <div class="table-responsive shadow py-3 px-3">
+        <table class="table table-striped table-hover">
+          <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Active Status</th>
+            <th>Actions</th>
+            <th>Activity</th>
+
+          </tr>
+          {% for i in admins %}
+          <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.email }}</td>
+            <td>{{ i.username }}</td>
+            <td>{{ i.is_active }}</td>
+
+            <td>
+              <a
+                class="btn btn-outline-danger btn-sm mt-2 shadow" style="color: #343a40 !important;"
+                onclick="return confirm('Are you sure want to demote to User?')"
+                href="/admins/demote-to-employee/{{ i.id }}"
+                >Demote</a
+              >
+            </td>
+
+            <td>
+              <a
+                class="btn btn-sm text-white mt-2 shadow" style="background-color: #dd4e67 ; "
+                onclick="return confirm('Are you sure want to deactivate account?')"
+                href="/admins/deactivate-admin/{{ i.id }}"
+                >Deactivate</a
+              >
+              <a
+                class="btn btn-sm text-white mt-2 shadow" style="background-color: #5bc3ee ; "
+                onclick="return confirm('Are you sure want to reactivate the account?')"
+                href="/admins/reactivate-admin/{{ i.id }}"
+                >Reactivate</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
