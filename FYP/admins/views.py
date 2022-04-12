@@ -4,6 +4,8 @@ from authentications.auth import admin_only
 from django.contrib.auth.models import User
 from admins.models import Employee,Department
 from django.contrib import messages
+
+from .forms import DepartmentForm
 # Create your views here.
 
 
@@ -45,31 +47,73 @@ def allAdmins(request):
     return render(request, 'admins/allAdmins.html', context)
 
 
-@login_required
-@admin_only
-def demoteToEmployee(request, user_id):
-    user = User.objects.get(id=user_id)
-    user.is_staff = False
-    user.is_superuser = False
-    user.save()
-    messages.add_message(request, messages.SUCCESS, 'User Demoted to Customer Successfully!')
-    return redirect('/admins/alladmins')
+# ===================================================
+# ==================== DEPARTMENT CRUD ================
+# ===================================================
 
 @login_required
 @admin_only
-def deactivate(request, user_id):
-    user = User.objects.get(id=user_id)
-    user.is_active = False
-    user.save()
-    messages.add_message(request, messages.SUCCESS, 'Admin Account Deactivated!')
-    return redirect('/admins/alladmins')
+def allDepartment(request):
+    department = Department.objects.all().order_by('-id')
+    context = {
+        'department': department,
+        'activate_department': 'active bg-primary'
+    }
+    return render(request, 'admins/department.html', context)
 
 @login_required
 @admin_only
-def reactivate(request, user_id):
-    user = User.objects.get(id=user_id)
-    user.is_active = True
-    user.save()
-    messages.add_message(request, messages.SUCCESS, 'Admin Account Reactivated!')
-    return redirect('/admins/alladmins')
+def departmentForm(request):
+    if request.method == "POST":
+        form = DepartmentForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, 'Department added Successfully')
+            return redirect("/admins/department_form")
+        else:
+            messages.add_message(request, messages.ERROR, 'Unable to add Department')
+            return render(request, 'admins/departmentForm.html', {'form_department': form})
+    context = {
+        'form_department': DepartmentForm,
+        'activate_department': 'active bg-dark',
+    }
+    return render(request , 'admins/departmentForm.html', context)
 
+@login_required
+@admin_only
+def getDepartment(request):
+    departments = Department.objects.all().order_by('-id')
+    context = {
+        'departments': departments,
+        'activate_department': 'active bg-dark'
+    }
+    return render(request, 'admins/getDepartment.html', context)
+
+@login_required
+@admin_only
+def deleteDepartment(request,department_id):
+    department = Department.objects.get(id=department_id)
+    department.delete()
+    messages.add_message(request, messages.SUCCESS, 'Department deleted successfully')
+    return redirect('/admins/department')
+
+@login_required
+@admin_only
+def departmentUpdateForm(request,department_id):
+    department = Department.objects.get(id=department_id)
+    if request.method == "POST":
+        form = DepartmentForm(request.POST, instance=department)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, 'Department updated Successfully')
+            return redirect("/admins/department")
+        else:
+            messages.add_message(request, messages.ERROR, 'Unable to update Department')
+            return render(request, 'admins/departmentUpdateForm.html', {'form_department': form})
+
+    context = {
+        'form_department': DepartmentForm(instance=department),
+        'activate_department': 'active bg-dark',
+    }
+
+    return render(request , 'admins/departmentUpdateForm.html', context)

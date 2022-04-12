@@ -6,9 +6,10 @@ import time
 
 class Department(models.Model):
     name = models.CharField(max_length=70, null=False, blank=False)
-    history = models.TextField(max_length=1000,null=True,blank=True, default='No History')
-    
+    description = models.TextField(max_length=1000,null=True,blank=True)
+    created_date = models.DateField(auto_now_add=True, null=True)
 
+    
     def __str__(self):
         return self.name
 
