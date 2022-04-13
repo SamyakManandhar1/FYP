@@ -10,8 +10,8 @@ urlpatterns = [
     path('delete_department/<int:department_id>', views.deleteDepartment, name='delete_department'),
     path('update_department/<int:department_id>', views.departmentUpdateForm, name='update_department'),
 
-    # path ('get_feedback',views.get_feedback, name='get_feedback'),
-    # path ('get_allservices',views.get_allservices, name='get_allservices'),
+    path ('employee',views.employee, name='employee'),
+    path ('add_employee',views.addEmployee, name='add_employee'),
     # path ('get_allorders',views.get_allorders, name='get_allorders'),
 
 

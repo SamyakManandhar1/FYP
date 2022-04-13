@@ -72,26 +72,34 @@
             </li>
 
             <li>
-                <a href="/admins/get_allorders" class="{{ activate_orders }}" aria-expanded="false">
-                    <i class="fas fa-box-open" aria-hidden="true"></i>
-                    Leave Manangement
-                </a>
-            </li>
-            <li>
-                <a href="/admins/get_allservices" class="{{ activate_services }}" aria-expanded="false">
-                    <i class="fas fa-cogs" aria-hidden="true"></i>
-                    Attendence 
-                </a>
-            </li>
-
-            <li>
                 <a href="/admins/department" aria-expanded="false" class="{{ activate_department }}">
                     <i class="fas fa-comments-dollar"></i>
                     Department
                 </a>
             </li>
+
             <li>
-                <a href="{% url 'signout'  %}" onclick="return confirm('Are you sure want to logout?')" id="logout" aria-expanded="false">
+                <a href="/admins/employee" class="{{ activate_orders }}" aria-expanded="false">
+                    <i class="fas fa-box-open" aria-hidden="true"></i>
+                    Employee
+                </a>
+            </li>
+            <li>
+                <a href="/admins/attendence" class="{{ activate_services }}" aria-expanded="false">
+                    <i class="fas fa-cogs" aria-hidden="true"></i>
+                    Attendence 
+                </a>
+            </li>
+            <li>
+                <a href="/admins/leave" class="{{ activate_services }}" aria-expanded="false">
+                    <i class="fas fa-cogs" aria-hidden="true"></i>
+                    Leave Management 
+                </a>
+            </li>
+
+
+            <li>
+                <a href="{% url 'signout'  %}" onclick=" confirm('Are you sure want to logout?')" id="logout" aria-expanded="false">
                     <i class="fa fa-sign-out-alt" aria-hidden="true" ></i>
                     Sign Out
                 </a>

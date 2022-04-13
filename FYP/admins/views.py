@@ -2,10 +2,10 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from authentications.auth import admin_only
 from django.contrib.auth.models import User
-from admins.models import Employee,Department
+from admins.models import Department
 from django.contrib import messages
-
-from .forms import DepartmentForm
+# from .models import Profile
+from .forms import DepartmentForm,AddEmployee
 # Create your views here.
 
 
@@ -48,7 +48,7 @@ def allAdmins(request):
 
 
 # ===================================================
-# ==================== DEPARTMENT CRUD ================
+# ==================== DEPARTMENT CRUD ==============
 # ===================================================
 
 @login_required
@@ -117,3 +117,31 @@ def departmentUpdateForm(request,department_id):
     }
 
     return render(request , 'admins/departmentUpdateForm.html', context)
+
+
+
+# ===================================================
+# ==================== EMPLOYEE CRUD ================
+# ===================================================
+@login_required
+@admin_only
+def employee(request):
+    return render(request, "admins/employee.html")
+
+
+def addEmployee(request):
+    if request.method == 'POST':
+        form = AddEmployee(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, "New Employee has been added!")
+            return redirect('/admins/employee')
+        else:
+            messages.add_message(request, messages.ERROR, "Error")
+            return redirect('/')
+    context = {
+        'form': AddEmployee
+    }
+    return render(request, "admins/addEmployee.html", context)
+
+
