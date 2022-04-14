@@ -33,27 +33,30 @@
                       <th>Last Name</th>
                       <th>Username</th>
                       <th>Email Address</th>
-                      <th>Info</th>
-                      <th>Date</th>
+                      <th>Is Employee</th>
+                      <th>Joined Date</th>
                       <th>Actions</th>
                     </tr>
                     <hr />
   
-                    {% for i in department %}
+                    {% for i in employee_info %}
   
                     <tr>
-                      <td>{{ i.name }}</td>
-                      <td>{{ i.description }}</td>
-                      <td>{{ i.created_date }}</td>
+                      <td>{{ i.first_name }}</td>
+                      <td>{{ i.last_name }}</td>
+                      <td>{{ i.username }}</td>
+                      <td>{{ i.email }}</td>
+                      <td>{{ i.is_staff }}</td>
+                      <td>{{ i.date_joined }}</td>
   
                       <td>
-                        <a class="btn btn-sm" href="/admins/update_department/{{i.id}}" style="background-color: #00eeb6">
+                        <!-- <a class="btn btn-sm" href="/admins/update_department/{{i.id}}" style="background-color: #00eeb6">
                           <i class="fa fa-pencil-square-o fa-x" aria-hidden="true"></i>
-                        </a>
+                        </a> -->
                         <a
                           class="btn btn-danger mt-2"
-                          href="/admins/delete_department/{{i.id}}"
-                          onclick="return confirm('Are you sure to delete this department?')"
+                          href="/admins/delete_employee/{{i.id}}"
+                          onclick=" confirm('Are you sure to delete this employee?')"
                           style="background-color: #dd4e67"
                         >
                           <i class="fa fa-trash fa-x" aria-hidden="true"> </i>

@@ -12,7 +12,9 @@ urlpatterns = [
 
     path ('employee',views.employee, name='employee'),
     path ('add_employee',views.addEmployee, name='add_employee'),
-    # path ('get_allorders',views.get_allorders, name='get_allorders'),
+    path('delete_employee/<int:employee_id>',
+         views.deleteEmployee, name='delete_employee'),
+
 
 
 

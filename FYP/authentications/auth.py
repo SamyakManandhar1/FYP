@@ -16,7 +16,7 @@ def unauthenticated_user(view_function):
 # and if the user is NOT ADMIN, it redirects to USER DASHBOARD
 def admin_only(view_function):
     def wrapper_function(request, *args, **kwargs):
-        if request.user.is_staff:
+        if request.user.is_superuser:
             return view_function(request, *args, **kwargs)
         else:
             return redirect('/')
@@ -30,7 +30,7 @@ def admin_only(view_function):
 def employee_only(view_function):
     def wrapper_function(request, *args, **kwargs):
         if request.user.is_staff:
-            return redirect('/admins/dashboard')
+            return redirect('/employee/dashboard')
         else:
             return view_function(request, *args, **kwargs)
     return wrapper_function

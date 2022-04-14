@@ -18,17 +18,27 @@ class Department(models.Model):
     def __str__(self):
         return self.name
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    department=models.CharField(max_length=50, null=True)
+    forget_password_token = models.CharField(max_length=100, null=True)
+    first_name = models.CharField(max_length=100, null=True)
+    last_name = models.CharField(max_length=100, null=True)
+    username = models.CharField(max_length=200, null=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
     phone = models.CharField(max_length=10, null=True)
+    email = models.EmailField(null=True)
     address = models.CharField(max_length=300, null=True)
-    city = models.CharField(max_length=100,null=True)
-    profile_pic = models.FileField(upload_to='static/uploads', default='static/images/user.png')
-    created_date = models.DateField(auto_now_add=True, null=True)
+    city = models.CharField(max_length=100, null=True)
+    profile_pic = models.FileField(
+        upload_to='static/uploads', default='static/images/user.png')
+    created_date = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return self.username
+
+
+
 
 # class User(AbstractUser):
 

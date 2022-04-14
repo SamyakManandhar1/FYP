@@ -11,22 +11,7 @@ class DepartmentForm(ModelForm):
 
 
 class AddEmployee(UserCreationForm):
-    # password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = User
-        fields=['first_name','last_name','username','email','password','is_staff']
+        fields=['first_name','last_name','username','email','is_staff']
 
-
-# class ProfileForm(ModelForm):
-#     class Meta:
-#         model = Profile
-#         fields = ['phone','address','city','profile_pic']
-
-
-
-
-# class AddEmployeeForm(ModelForm):
-#     class Meta:
-#         model = Department
-#         fields = "__all__"
-    

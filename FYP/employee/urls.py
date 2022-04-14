@@ -5,10 +5,14 @@ urlpatterns = [
     path('dashboard',views.employeeDashboard, name='dashboard'),
     
     
-    # path('customerprofile',views.customerProfile, name='customerprofile'),
-    # path('customerupdateprofile',views.customerUpdateProfile, name='customerupdateprofile'),
-    # path('my_bookings',views.myBookings, name='my_bookings'),
-    # path ('feedback_form/<int:service_id>',views.feedbackForm, name='feedback_form'),
+    path('employeeprofile',views.employeeProfile, name='employeeprofile'),
+
+    path('employee_update_profile', views.employeeUpdateProfile,
+         name='employee_update_profile'),
+    
+    
+    path('leave',views.leave, name='leave'),
+    path('attendance', views.attendance, name='attendance'),
 
 
     

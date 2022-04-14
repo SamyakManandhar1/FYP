@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from authentications.auth import admin_only
 from django.contrib.auth.models import User
-from admins.models import Department
+from admins.models import Department,Profile
 from django.contrib import messages
 # from .models import Profile
 from .forms import DepartmentForm,AddEmployee
@@ -28,7 +28,7 @@ def adminDashboard(request):
         "admin_info":adminInfo,
         "employee_info":employeeInfo,
         'totalDepartment': department_count,
-        'activate_dashboard': 'active bg-dark'
+        'activate_dashboard': 'active bg-success'
 
     }
 
@@ -126,14 +126,29 @@ def departmentUpdateForm(request,department_id):
 @login_required
 @admin_only
 def employee(request):
-    return render(request, "admins/employee.html")
+    users = User.objects.all()    
+    employeeInfo = users.filter(is_superuser=0)
+    
+    context = {
+        "employee_info":employeeInfo,
+        'activate_employee': 'active bg-primary'
+
+    }
+    
+
+    return render(request, "admins/employee.html",context)
 
 
+@login_required
+@admin_only
 def addEmployee(request):
     if request.method == 'POST':
         form = AddEmployee(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            user.save()
+            Profile.objects.create(
+                user=user, username=user.username, email=user.email,  first_name=user.first_name, last_name=user.last_name )
             messages.add_message(request, messages.SUCCESS, "New Employee has been added!")
             return redirect('/admins/employee')
         else:
@@ -145,3 +160,11 @@ def addEmployee(request):
     return render(request, "admins/addEmployee.html", context)
 
 
+@login_required
+@admin_only
+def deleteEmployee(request, employee_id):
+    user = User.objects.get(id=employee_id)
+    user.delete()
+    messages.add_message(request, messages.SUCCESS,
+                         'Employee deleted successfully')
+    return redirect('/admins/employee')
