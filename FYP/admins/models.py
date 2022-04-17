@@ -3,9 +3,9 @@ import random
 from django.urls import reverse
 from django.utils import timezone
 import time
-from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User
 
+from django.contrib.auth.models import AbstractUser
 
 
 
@@ -25,8 +25,8 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=100, null=True)
     last_name = models.CharField(max_length=100, null=True)
     username = models.CharField(max_length=200, null=True)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
     phone = models.CharField(max_length=10, null=True)
+    department = models.CharField(max_length=100, null=True)
     email = models.EmailField(null=True)
     address = models.CharField(max_length=300, null=True)
     city = models.CharField(max_length=100, null=True)
@@ -90,6 +90,15 @@ class Profile(models.Model):
         
         
         
+# class CustomUser(AbstractUser):
+#     is_student = models.BooleanField(default=False,null=True)
 
 
         
+
+class CustomUser(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    department = models.CharField(max_length=100)
+
+    def __str__(self) :
+        return self.user.username

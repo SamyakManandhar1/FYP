@@ -33,19 +33,22 @@
                       <th>Last Name</th>
                       <th>Username</th>
                       <th>Email Address</th>
+                      <th>Department </th>
                       <th>Is Employee</th>
                       <th>Joined Date</th>
                       <th>Actions</th>
                     </tr>
                     <hr />
   
-                    {% for i in employee_info %}
+                    {% for i,j in employee_info %}
   
                     <tr>
                       <td>{{ i.first_name }}</td>
                       <td>{{ i.last_name }}</td>
                       <td>{{ i.username }}</td>
                       <td>{{ i.email }}</td>
+                     
+                      <td>{{j}}</td>
                       <td>{{ i.is_staff }}</td>
                       <td>{{ i.date_joined }}</td>
   
