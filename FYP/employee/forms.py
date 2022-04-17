@@ -1,6 +1,6 @@
 
 import datetime
-from .models import Leave
+from .models import Leave,Attendance
 from django import forms
 from admins.models import Profile
 
@@ -23,6 +23,19 @@ class LeaveForm (forms.ModelForm):
             'reason': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
         }
 
+
+class AttendanceForm (forms.ModelForm):
+
+    class Meta:
+        model = Attendance
+        fields = "__all__"
+        
+
+        # widgets = {
+            # 'first_in': forms.TimeField(required=True),
+            # 'end': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            # 'reason': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
+        # }
 
 
         

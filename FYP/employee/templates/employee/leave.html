@@ -13,10 +13,10 @@ Employee Dashboard | HRM
             <div class="row">
                 <nav aria-label="breadcrumb" class="mt-4">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Dashboard</li>
+                        <li class="breadcrumb-item"> <a href="/employee/dashboard" class="text-primary">Dashboard</a> </li>
                         <li class="breadcrumb-item active" aria-current="page">Leave Management </li>
                     </ol>
-      {% include 'message.html'%}
+                    {% include 'message.html'%}
 
                 </nav>
                 <div class="col-lg-12 grid-margin">
@@ -82,11 +82,11 @@ Employee Dashboard | HRM
 
 
                             {% if form_leave %}
-                            <h4 class="text-center text-primary mt-4">Approved Leaves </h4><hr>
+                            <h4 class="text-center text-primary mt-4 py-4"> Leaves Status</h4><hr>
 
-                            <small class='text-center'>This is a list of approved Staffers leaves application. </small>
-                             <div class="table-responsive">
-                                            <table class="table table-striped">
+                            <small class='text-center'>This is a list of leaves application. </small>
+                             <div class="table-responsive mt-4">
+                                            <table class="table table-striped mt-4">
                                                 <thead>
                                                     <tr>
                                                        
@@ -120,8 +120,26 @@ Employee Dashboard | HRM
                                                             <strong>{{leave.end}}</strong>  
                                                             </td>
                                                             <td>
-                                                            
-                                                                <span class="btn btn-success">{{leave.status}}</span>  
+                                                                {% if leave.status == 'Approved' %}
+                                                                <span class="btn btn-success">
+                                                                    {{leave.status}}
+                                                                </span> 
+                                                                {%endif%} 
+
+                                                                {% if leave.status == 'Declined' %}
+                                                                <span class="btn btn-danger">
+                                                                    {{leave.status}}
+                                                                </span> 
+                                                                {%endif%} 
+                                                                {% if leave.status == 'Not Approved' %}
+                                                                <span class="btn btn-warning">
+                                                                    {{leave.status}}
+                                                                </span> 
+                                                                {%endif%}
+
+                                                                
+                                                                
+
                                                             </td>
                                                             <td>
                                                             {{leave.leavetype}}

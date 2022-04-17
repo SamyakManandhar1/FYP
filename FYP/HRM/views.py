@@ -22,3 +22,6 @@ from django.views.generic import TemplateView, FormView, CreateView
 
 def homepage(request):
     return render(request, "HRM/homepage.html")
+
+def about(request):
+    return render(request, "HRM/aboutus.html")    

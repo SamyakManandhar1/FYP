@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 from admins.models import CustomUser
+from django.utils import timezone
+
 # Create your models here.
 
 SICK = 'sick'
@@ -32,3 +34,17 @@ class Leave (models.Model):
 
     def __str__(self):
         return self.employee + ' ' + self.start
+
+
+class Attendance (models.Model):
+    STATUS = (('PRESENT', 'PRESENT'), ('ABSENT', 'ABSENT'),
+              ('UNAVAILABLE', 'UNAVAILABLE'))
+    date = models.DateField(auto_now_add=True)
+    first_in = models.TimeField(null=True)
+    # last_out = models.TimeField(null=True)
+    status = models.CharField(choices=STATUS, max_length=15)
+    staff = models.ForeignKey(CustomUser, null=True, on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        self.first_in = timezone.localtime()
+        super(Attendance, self).save(*args, **kwargs)
