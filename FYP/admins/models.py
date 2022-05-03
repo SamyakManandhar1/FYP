@@ -1,15 +1,16 @@
 from django.db import models
-import random
-from django.urls import reverse
-import time
 from django.contrib.auth.models import User
+from django.utils import timezone
+
 
 class Department(models.Model):
     name = models.CharField(max_length=70, null=False, blank=False)
-    description = models.TextField(max_length=1000,null=True,blank=True)
-    created_date = models.DateField(auto_now_add=True, null=True)    
+    description = models.TextField(max_length=1000, null=False, blank=False)
+    created_date = models.DateField(auto_now_add=True, null=True)
+
     def __str__(self):
         return self.name
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
@@ -28,12 +29,30 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.username
-
-
     
+
+
 class CustomUser(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     department = models.CharField(max_length=100)
 
-    def __str__(self) :
+    def __str__(self):
         return self.user.username
+
+
+class Attendance (models.Model):
+    STATUS = (('PRESENT', 'PRESENT'), ('ABSENT', 'ABSENT'),
+              ('LATE', 'LATE'))
+    date = models.DateField(auto_now_add=True)
+    first_in = models.TimeField(null=True)
+    status = models.CharField(choices=STATUS, max_length=15)
+    staff = models.ForeignKey(CustomUser, null=True, on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        self.first_in = timezone.localtime()
+        super(Attendance, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return 'Attendance -> '+str(self.date) + ' -> ' + str(self.staff)
+
+

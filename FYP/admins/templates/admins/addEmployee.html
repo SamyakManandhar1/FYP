@@ -2,7 +2,16 @@
 {% extends 'admin_layout.html' %} {% load bootstrap %} {% load static %} {% load crispy_forms_tags %} {%block title%}Add Employee|  Admin HRM {%endblock title %} {%block main %}
 
 
+<nav aria-label="breadcrumb" class="mt-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> <a href="/admins/dashboard" class="text-primary">Dashboard</a> </li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="/admins/employee" class="text-primary">Employee</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Add Employee</li>
 
+                    </ol>
+
+                </nav>
+{% include 'message.html'%}
 
  <form class="p-4 p-md-5 rounded-3 bg-white w-50" action="" method="POST"
  enctype="multipart/form-data">
@@ -10,16 +19,22 @@
 {% csrf_token %}
 {{ form | bootstrap }}
 <label for="dep">Department:</label>
-<select id="dep" name="dep">
-    {% for dt  in department %}
-    <option value="{{dt.name}}">{{dt.name}}</option>
-    {% endfor %}
 
+<select id="dep" name="dep" class="m-2 p-2">
+    {% for dt  in department %}
+    <option value="{{dt.name}}" class="mb-2">{{dt.name}}</option>
+    {% endfor %}
 </select>
+
 <br>
 <button class="w-100 btn btn-primary" type="submit">Add New Employee</button>
 <hr class="my-4">
 <small class="text-muted">Please be sure on your provided information before submitting!</small>
 </form>
+
+
+
+
+
 
 {%endblock main%}

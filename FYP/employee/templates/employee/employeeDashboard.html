@@ -10,8 +10,52 @@ Employee Dashboard | HRM
 
 
 
-<h1>Employee</h1>
 
+<h1>Employee</h1>
+<div class="row">
+
+<div class="col-lg-6 col-md-6 col-xl-4 mb-4">
+    <a href="/employee/attendance">
+      <div class="card shadow border-0 py-2">
+        <div class="card-body">
+          <div class="row align-items-center no-gutters">
+            <div class="col me-2">
+                    <div class="text-muted mb-1"><span>My Attendance</span></div>
+
+              <div class="text-secondary fw-normal display-6 h5 mb-0">
+
+                <span> Total: <span class="text-success">{{ myAttendance }} </span></span>
+              </div>
+            </div>
+            <div class="col-auto" style="color: black"><i class="fas fa-calendar fa-3x"></i></div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-lg-6 col-md-6 col-xl-4 mb-4">
+    <a href="/employee/leave">
+      <div class="card shadow border-0 py-2">
+        <div class="card-body">
+          <div class="row align-items-center no-gutters">
+            <div class="col me-2">
+                    <div class="text-muted mb-1"><span>My Leave</span></div>
+
+              <div class="text-secondary fw-normal display-6 h5 mb-0">
+
+                <span> Total: <span class="text-success">{{ myLeave }} </span></span>
+              </div>
+            </div>
+            <div class="col-auto" style="color: black"><i class="fas fa-cogs fa-3x"></i></div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+
+</div>
 
 
 {% endblock %}

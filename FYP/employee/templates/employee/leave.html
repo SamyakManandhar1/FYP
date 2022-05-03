@@ -8,6 +8,17 @@ Employee Dashboard | HRM
 
 {% block main %}
 
+<style>
+
+.form-group label{
+    display:none;
+}
+
+
+</style>
+
+
+
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="row">
@@ -22,7 +33,7 @@ Employee Dashboard | HRM
                 <div class="col-lg-12 grid-margin">
 
 
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body">
                            <h4 class="text-center text-primary">Apply Leave </i></h4><hr>
                                 <form class="form-group" method="POST">
@@ -53,21 +64,21 @@ Employee Dashboard | HRM
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                                {{request.user}}
+                                                                {{request.user }}
                                                         </td>
                                                         
                                                         <td class="py-1">
-                                                            {{form_leave.start}}
+                                                            {{form_leave.start | bootstrap}}
                                                         </td>
                                                         
                                                         <td>
-                                                           {{form_leave.end}}
+                                                           {{form_leave.end | bootstrap}}
                                                         </td>
                                                         <td>
-                                                            {{form_leave.leavetype}}
+                                                            {{form_leave.leavetype | bootstrap}}
                                                         </td>
                                                         <td>
-                                                            {{form_leave.reason}}
+                                                            {{form_leave.reason | bootstrap}}
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -81,7 +92,18 @@ Employee Dashboard | HRM
                                 </form><br>
 
 
-                            {% if form_leave %}
+                            
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+                    <div class="card mt-4 mb-4 shadow">
+                        <div class="card-body">
+{% if form_leave %}
                             <h4 class="text-center text-primary mt-4 py-4"> Leaves Status</h4><hr>
 
                             <small class='text-center'>This is a list of leaves application. </small>
@@ -155,11 +177,10 @@ Employee Dashboard | HRM
                             {% else %}
                                 <p class="lead"> There are currently no leave application. </p>
                             {% endif %}   
-                                
-                </div>
-            </div>
-        </div>
-    </div>
+                                </div>
+                            </div>
+
+
 
 
 {% endblock %}

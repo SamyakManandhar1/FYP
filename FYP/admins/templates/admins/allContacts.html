@@ -1,0 +1,55 @@
+{% extends 'admin_layout.html' %} 
+{% load bootstrap %}
+ {% load static %} 
+ {% block title %}
+All Messages | Admin HRM
+ {%endblock title %} 
+
+ {% block main %}
+<div class="d-flex justify-content-between">
+  <h3 class="text-dark mb-4 px-4 display-6 mt-lg-5"> All Messages</h3>
+</div>
+<nav aria-label="breadcrumb" class="mt-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> <a href="/admins/dashboard" class="text-primary">Dashboard</a> </li>
+                        
+                        <li class="breadcrumb-item active" aria-current="page">All Messages</li>
+
+                    </ol>
+
+                </nav>
+<div class="container-fluid mt-4" style="min-height: 100vh">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+
+      <div class="table-responsive shadow py-3 px-3">
+        <table class="table table-striped table-hover">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Messages</th>
+            <th>Date</th>
+
+
+          </tr>
+          {% for i in message %}
+          <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.email }}</td>
+            <td>{{ i.message }}</td>
+            <td>{{ i.date }}</td>
+
+
+
+
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

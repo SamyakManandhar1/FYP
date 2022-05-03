@@ -7,7 +7,15 @@ Leave Management | Admin HRM
 
 
 {% block main %}
+<nav aria-label="breadcrumb" class="mt-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"> <a href="/admins/dashboard" class="text-primary">Dashboard</a> </li>
+                   
+                        <li class="breadcrumb-item active" aria-current="page">Leave Management</li>
 
+                    </ol>
+
+                </nav>
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="row">
@@ -23,7 +31,7 @@ Leave Management | Admin HRM
                         <div class="card-body">
                             <h4 class="text-center text-primary">Employee Leave Management </i></h4><hr>
                                 
-                              <div class="table-responsive">
+                                <div class="table-responsive">
                                             <table class="table table-striped">
                                                 <thead>
                                                     <tr>
@@ -108,7 +116,7 @@ Leave Management | Admin HRM
                                                     {% endfor %}
                                                 </tbody>
                                             </table>
-                                        </div>
+                                </div>
                                 <p class="lead"> All the leave application are shown here. </p>
                                 
                 </div>

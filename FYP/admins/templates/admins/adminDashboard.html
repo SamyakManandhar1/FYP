@@ -79,26 +79,6 @@ Admin Dashboard | HRM
           </div>
 
 
-          <div class="col-lg-6 col-md-6 col-xl-4 mb-4">
-            <a href="/admins/get_allservices">
-              <!-- <div class="card shadow border-0 py-2"> -->
-                <!-- <div class="card-body">
-                  <div class="row align-items-center no-gutters">
-                    <div class="col me-2">
-                      <div class="text-uppercase fw-bold text-xs mb-1">
-                        <span>Total Services</span>
-                      </div>
-                      <div class="text-secondary fw-normal display-6 h5 mb-0">
-                        <span> Services: <span class="text-warning">{{ service }}</span></span>
-                      </div>
-                    </div>
-                    <div class="col-auto" style="color: black"><i class="fas fa-cogs fa-3x"></i></div>
-                  </div>
-                </div> -->
-              </div>
-            </a>
-          </div>
-        </div>
 
         <div class="row">
           <div class="col-lg-10 col-xl-8">
@@ -123,11 +103,11 @@ Admin Dashboard | HRM
                             </tr>
                           </thead>
                           <tbody>
-                            {% for iemployee in employee_info %}
+                            {% for i in employee_info %}
                             <tr>
-                              <th scope="row">{{ iemployee.id }}</th>
-                              <td>@{{ iemployee.username }}</td>
-                              <td>{{ iemployee.date_joined }}</td>
+                              <th scope="row">{{ i.id }}</th>
+                              <td>@{{ i.username }}</td>
+                              <td>{{ i.date_joined }}</td>
                             </tr>
                             {% endfor %}
                           </tbody>
@@ -150,11 +130,11 @@ Admin Dashboard | HRM
                             </tr>
                           </thead>
                           <tbody>
-                            {% for iadmin in admin_info %}
+                            {% for i in admin_info %}
                             <tr>
-                              <th scope="row">{{ iadmin.id }}</th>
-                              <td>@{{ iadmin.username }}</td>
-                              <td>{{ iadmin.date_joined}}</td>
+                              <th scope="row">{{ i.id }}</th>
+                              <td>@{{ i.username }}</td>
+                              <td>{{ i.date_joined}}</td>
                             </tr>
                             {% endfor %}
                           </tbody>

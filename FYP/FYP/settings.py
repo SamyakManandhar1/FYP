@@ -43,13 +43,10 @@ INSTALLED_APPS = [
     'admins',
     'employee',
     'authentications',
-    
+
     'bootstrapform',
     'crispy_forms',
-    'django_filters',
-    
-    'django_countries',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -67,7 +64,7 @@ ROOT_URLCONF = 'FYP.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR/ "templates"],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,17 +84,16 @@ WSGI_APPLICATION = 'FYP.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-   'default': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'hrm',
-        'HOST':'localhost',
-        'PORT':'3306',
-        'USER':'root',
-        'PASSWORD':'',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'USER': 'root',
+        'PASSWORD': '',
 
     }
 }
-
 
 
 # Password validation
@@ -136,9 +132,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS=[BASE_DIR/ "static"]
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
-STATIC_ROOT= BASE_DIR / "static_cdn"
+STATIC_ROOT = BASE_DIR / "static_cdn"
+
 # MEDIA_URL = "/media/"
 # MEDIA_ROOT = BASE_DIR / "media"
 
@@ -150,9 +147,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/auth/signin'
 
-# AUTH_USER_MODEL= 'admins.CustomUser'
-
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -160,3 +154,9 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'help.hrmsuite@gmail.com'
 EMAIL_HOST_PASSWORD = 'vtrurovzwurddicg'
 EMAIL_USE_TLS = True
+
+
+ADMINS = [
+    ('HRM Suite', 'help.hrmsuite@gmail.com'),
+    ('Samyak Manahdhar', 'samyakmanandhar2000@gmail.com'),
+]

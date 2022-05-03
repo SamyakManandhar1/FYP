@@ -38,7 +38,7 @@
     <div class="container-fluid">
 
         <a href="/admins/dashboard"><img src="{% static 'images/site-iconG.png' %}" alt="HRM" width="58" height="38" /></a>
-            <div class="content" style="background-color: #FFCC99;  color:#fff;">
+            <div class="content" style="background-color: #2196f3;  color:#fff;">
         <button type="button" id="sidebarCollapse" class="btn btn-white" >
             <i class="fa fa-bars" aria-hidden="true"></i>
         </button>
@@ -47,7 +47,8 @@
 
             <div class="d-none d-sm-block topbar-divider"></div>
             <button class="btn btn-sm hover welcome">
-                <a href="">Welcome, Admin <span style="color:#FFCC99"> @{{ request.user.username }}</span>
+                {% comment %} for ad {% endcomment %}
+                <a href="" style="color:#ffffff"> Welcome, Admin <span style="color:#2196f3"> @{{ request.user.username }}</span> 
                 </a>
             </button>
 
@@ -73,20 +74,20 @@
 
             <li>
                 <a href="/admins/department" aria-expanded="false" class="{{ activate_department }}">
-                    <i class="fas fa-comments-dollar"></i>
+                    <i class="fas fa-th-large"></i>
                     Department
                 </a>
             </li>
 
             <li>
                 <a href="/admins/employee" class="{{ activate_employee }}" aria-expanded="false">
-                    <i class="fas fa-box-open" aria-hidden="true"></i>
+                    <i class="fas fa-user" aria-hidden="true"></i>
                     Employee
                 </a>
             </li>
             <li>
-                <a href="/admins/attendence" class="{{ activate_attendence }}" aria-expanded="false">
-                    <i class="fas fa-cogs" aria-hidden="true"></i>
+                <a href="/admins/attendance" class="{{ activate_attendance }}" aria-expanded="false">
+                    <i class="fas fa-calendar" aria-hidden="true"></i>
                     Attendence 
                 </a>
             </li>
@@ -96,10 +97,16 @@
                     Leave Management 
                 </a>
             </li>
+            <li>
+                <a href="/admins/all-messages" class="{{ activate_message }}" aria-expanded="false">
+                    <i class="fa fa-comments " aria-hidden="true"></i>
+                    All Messages 
+                </a>
+            </li>
 
 
             <li>
-                <a href="{% url 'signout'  %}" onclick=" confirm('Are you sure want to logout?')" id="logout" aria-expanded="false">
+                <a href="{% url 'signout'  %}" onclick="return confirm('Are you sure want to logout?')" id="logout" aria-expanded="false">
                     <i class="fa fa-sign-out-alt" aria-hidden="true" ></i>
                     Sign Out
                 </a>
@@ -176,34 +183,23 @@
                     <div class="footer-widget">
                         <h6> Quick Links</h6>
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Service</a></li>
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Support </a></li>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/contact-us">Contact us</a></li>
                         </ul>
                     </div>
                 </div>
                 
-                <div class="col">
-                    <div class="footer-widget">
-                        <h6>Any Suggestions?</h6>
-                        <div class="footer-newsletter">
-                            <p>Feel free to write any complaints or suggestions.<i class="fa fa-angellist" aria-hidden="true"></i></p>
-                                <input type="email" placeholder="you@example.com">
-                                <button class="btn-secondary submit-btn" type="submit"> <span><i class="fa fa-check"  aria-hidden="true"></i></span> &nbsp;Submit </button>                                        
-                            </form>
-                        </div>
-                    </div>
-                </div>
+             
 
             </div>
 
             <div class="row" id="dev-info">
                 <div class="col-lg-12 text-center" >
                     <div class="footer-copyright-text">
-                        <span> <img src="{% static 'images/site-iconG.png' %}" alt="Site Icon" id="img" width="58" height=38"> </span>     
+                        <span> <img src="{% static 'images/site-iconG.png' %}" alt="Site Icon" id="img" width="58" height="38">
+                         </span>     
                         <p> 
-                            &copy; 2021 : All Right Reserved.<br> Designed and Developed With <span class="text-danger"><i class="fa fa-heart" aria-hidden="true"></i></span> By: Samyak Manandhar
+                            &copy; 2022 : All Right Reserved.<br> Designed and Developed With <span class="text-danger"><i class="fa fa-heart" aria-hidden="true"></i></span> By: Samyak Manandhar
                         </p> 
                     </div>                        
                 </div>    

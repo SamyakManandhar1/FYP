@@ -74,7 +74,7 @@ Employee Profile | HRM
       {% include 'message.html' %}
       <div class="card form-box-shadow py-4 px-4">
         <form class="form " action="" method="POST" enctype="multipart/form-data">
-          {% csrf_token %} {{ profileUpdateForm|crispy }}
+          {% csrf_token %} {{ profileUpdateForm | bootstrap }}
           <button type="submit" class="btn btn-primary mt-3">Submit</button>
         </form>
       </div>

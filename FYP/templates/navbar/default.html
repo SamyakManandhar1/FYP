@@ -59,15 +59,16 @@ header{
     <div class="container-fluid d-flex">
   
       <a class="navbar-brand" href="/">
-        <img src="{% static '#' %}" alt="HRM" width="48" height="48" style="margin-left: 10px;" >
+        <img src="{% static 'images/site-iconG.png' %}" alt="HRM" width="48" height="48" style="margin-left: 10px;" >
       </a>
+
 
       {% if user.is_authenticated %}
 
       {% if user.is_superuser %}
-      <a id="usr_name" href="/admins">@{{user.username}}</a>
-      {% elif user.is_active %}
-      <a id="usr_name" href="/">@{{user.username}}</a>
+      <a id="usr_name" href="/admins/dashboard">@{{user.username}}</a>
+      {% elif user.is_staff %}
+      <a id="usr_name" href="/employee/dashboard">@{{user.username}}</a>
       {% endif %}
 
       {% else %}
